@@ -1,12 +1,12 @@
 {
-  "name": "fritzbox",
+  "name": "tr-064-async",
   "version": "1.0.0",
-  "author": "Jochen Scheib <mail@jochen-scheib.de>",
-  "description": "Fritzbox - UPnP/IGD for node.js",
+  "author": "Andreas Goetz <cpuidle@gmx.de>",
+  "description": "Fritzbox - UPnP/IGD for node.js. Repackage of mapero/Fritzbox",
   "main": "./lib/Fritzbox",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mapero/Fritzbox.git"
+    "url": "git+https://github.com/andig/tr-064-async.git"
   },
   "keywords": [
     "TR-064",
@@ -30,8 +30,13 @@
     "node": ">=0.10"
   },
   "contributors": [
-    { "name" : "Hendrik Westerberg"
-    , "email" : "hendrik@gestorf.com"
+    { 
+      "name" : "Hendrik Westerberg", 
+      "email" : "hendrik@gestorf.com"
+    },
+    { 
+      "name": "Jochen Scheib",
+      "email": "mail@jochen-scheib.de"
     }
   ]
 }
