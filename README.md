@@ -22,7 +22,7 @@ This library is a complete rework of the tr-064 library from [Hendrik Westerberg
 ## Install
 
 <pre>
-  npm install tr-064
+  npm install tr-064-async
 </pre>
 
 ## It is simple
@@ -30,7 +30,8 @@ This library is a complete rework of the tr-064 library from [Hendrik Westerberg
 Connect to the device and read a Service.
 
 ```javascript
-var Fritzbox = require('fritzbox');
+var tr = require('tr-064-async');
+
 var options = {
   host: 'fritz.box',
   port: 49000,
@@ -39,7 +40,7 @@ var options = {
   password: 'password'
 }
 
-var fritzbox = new Fritzbox(options);
+var fritzbox = new tr.Fritzbox(options);
 
 fritzbox.initTR064Device().then(function(){
     console.log('Successfully initialized device');
@@ -57,7 +58,7 @@ fritzbox.initTR064Device().then(function(){
 Get the info from both protocols.
 
 ```javascript
-var Fritzbox = require("./lib/Fritzbox");
+var tr = require('tr-064-async');
 var Promise = require("bluebird");
 
 var options = {
@@ -68,20 +69,20 @@ var options = {
   password: 'password'
 }
 
-var fritzbox = new Fritzbox.Fritzbox(options);
+var fritzbox = new tr.Fritzbox(options);
 
 //Initialize Device
 Promise.all([fritzbox.initTR064Device(), fritzbox.initIGDDevice()])
 //Print information about available services
   .then(function() {
-    for (var serviceName in box.services) {
+    for (var serviceName in fritzbox.services) {
       console.log("=== "+serviceName+" ===");
-      for (var actionName in box.services[serviceName].actionsInfo) {
+      for (var actionName in fritzbox.services[serviceName].actionsInfo) {
         console.log("   # " + actionName + "()");
-        box.services[serviceName].actionsInfo[actionName].inArgs.forEach(function(arg) {
+        fritzbox.services[serviceName].actionsInfo[actionName].inArgs.forEach(function(arg) {
           console.log("     IN : " + arg);
         });
-        box.services[serviceName].actionsInfo[actionName].outArgs.forEach(function(arg) {
+        fritzbox.services[serviceName].actionsInfo[actionName].outArgs.forEach(function(arg) {
           console.log("     OUT : " + arg);
         });
       }
@@ -93,7 +94,7 @@ Promise.all([fritzbox.initTR064Device(), fritzbox.initIGDDevice()])
 
 ### fritzbox.initTR064Device()
 
-Initialize the TR - 064 UPnP controller and adds the TR-064 services to the services array.
+Initialize the TR-064 UPnP controller and adds the TR-064 services to the services array.
 
 Returns
 * `Promise`
